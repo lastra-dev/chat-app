@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/auth_screen.dart';
-// import 'screens/chat_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      // home: ChatScreen(),
       home: FutureBuilder(
         future: _myApp,
         builder: (context, snapshot) =>
