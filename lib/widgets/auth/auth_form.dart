@@ -9,6 +9,7 @@ class AuthForm extends StatefulWidget {
     required String username,
     required String password,
     required bool isLogin,
+    required File image,
   }) onSubmit;
 
   final bool isLoading;
@@ -26,10 +27,6 @@ class _AuthFormState extends State<AuthForm> {
   String? _userName = '';
   String? _userPassword = '';
   File? _userImageFile;
-
-  void _pickedImage(File image) {
-    _userImageFile = image;
-  }
 
   void _trySubmit() {
     final isValid = _formKey.currentState!.validate();
@@ -53,6 +50,7 @@ class _AuthFormState extends State<AuthForm> {
         username: _userName!.trim(),
         password: _userPassword!.trim(),
         isLogin: _isLogin,
+        image: _userImageFile!,
       );
     }
   }
@@ -70,7 +68,10 @@ class _AuthFormState extends State<AuthForm> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (!_isLogin) UserImagePicker(_pickedImage),
+                  if (!_isLogin)
+                    UserImagePicker((File image) {
+                      _userImageFile = image;
+                    }),
                   TextFormField(
                     key: const ValueKey('email'),
                     keyboardType: TextInputType.emailAddress,
