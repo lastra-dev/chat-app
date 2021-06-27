@@ -9,7 +9,7 @@ class AuthForm extends StatefulWidget {
     required String username,
     required String password,
     required bool isLogin,
-    required File image,
+    File? image,
   }) onSubmit;
 
   final bool isLoading;
@@ -50,7 +50,7 @@ class _AuthFormState extends State<AuthForm> {
         username: _userName!.trim(),
         password: _userPassword!.trim(),
         isLogin: _isLogin,
-        image: _userImageFile!,
+        image: _userImageFile != null ? _userImageFile! : null,
       );
     }
   }
